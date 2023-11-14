@@ -13,6 +13,9 @@ export class User extends Document {
   lastname: string;
 
   @Prop()
+  password: string;
+
+  @Prop({ unique: true })
   email: string;
 
   @Prop()
