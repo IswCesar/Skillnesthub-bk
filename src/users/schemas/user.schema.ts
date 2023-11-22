@@ -1,5 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { now, Document } from 'mongoose';
+import { now, Types, Document } from 'mongoose';
 
 @Schema()
 export class User extends Document {
@@ -23,6 +23,14 @@ export class User extends Document {
 
   @Prop()
   birthday: string;
+
+  @Prop()
+  order: [
+    {
+      type: Types.ObjectId;
+      ref: 'Order';
+    },
+  ];
 
   @Prop({ default: now() })
   createdAt: Date;

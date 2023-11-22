@@ -44,6 +44,14 @@ export class Product extends Document {
     },
   ];
 
+  @Prop()
+  order: [
+    {
+      type: Types.ObjectId;
+      ref: 'Order';
+    },
+  ];
+
   @Prop({ default: now() })
   createdAt: Date;
 
