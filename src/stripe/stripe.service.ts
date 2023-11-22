@@ -9,6 +9,7 @@ import { Stripe } from 'stripe';
 import { ConfigService } from '@nestjs/config';
 import { CreateStripeIntentDto } from './dto/create-intent-stripe.dto';
 import * as util from 'util';
+import { CreateChargeStripeDto } from './dto/create-charge-stripe.dto';
 
 @Injectable()
 export class StripeService {
@@ -34,6 +35,24 @@ export class StripeService {
       throw new UnprocessableEntityException(
         'The payment intent could not be created',
       );
+    }
+  }
+
+  async makeCharge(createChargeStripeDto: CreateChargeStripeDto) {
+    try {
+      const charge = await this.stripe.charges.create({
+        amount: createChargeStripeDto.price,
+        currency: this.configService.get<string>('STRIPE_CURRENCY'),
+        description: createChargeStripeDto.description,
+        source: createChargeStripeDto.source,
+      });
+      return charge;
+    } catch (error) {
+      Logger.error(
+        '[stripeService] Error making a charge',
+        util.inspect(error),
+      );
+      throw new UnprocessableEntityException('The charge could not be created');
     }
   }
 

@@ -11,6 +11,7 @@ import { StripeService } from './stripe.service';
 import { CreateStripeDto } from './dto/create-stripe.dto';
 import { UpdateStripeDto } from './dto/update-stripe.dto';
 import { CreateStripeIntentDto } from './dto/create-intent-stripe.dto';
+import { CreateChargeStripeDto } from './dto/create-charge-stripe.dto';
 
 @Controller('stripe')
 export class StripeController {
@@ -19,6 +20,11 @@ export class StripeController {
   @Post('intent')
   create(@Body() createStripeIntentDto: CreateStripeIntentDto) {
     return this.stripeService.createIntent(createStripeIntentDto);
+  }
+
+  @Post('charge')
+  charge(@Body() createChargeStripeDto: CreateChargeStripeDto) {
+    return this.stripeService.makeCharge(createChargeStripeDto);
   }
 
   @Get()
