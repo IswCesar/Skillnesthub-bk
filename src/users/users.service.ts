@@ -6,11 +6,14 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import * as bcrypt from 'bcrypt';
 import { SigninUserDto } from './dto/signin-user.dto';
+import { AddOrderDto } from './dto/add-order.dto';
+import { Order } from 'src/orders/schemas/order.schema';
 
 @Injectable()
 export class UsersService {
   constructor(
     @InjectModel(User.name) private readonly userModel: Model<User>,
+    @InjectModel(Order.name) private readonly orderModel: Model<Order>,
   ) {}
 
   async create(createUserDto: CreateUserDto): Promise<User> {
@@ -19,6 +22,14 @@ export class UsersService {
     const hash = await bcrypt.hash(password, saltOrRounds);
     createUserDto.password = hash;
     const createdUser = await this.userModel.create(createUserDto);
+    return createdUser;
+  }
+
+  async addOrder(addOrder: AddOrderDto): Promise<User> {
+    const createdUser = await this.userModel.create(addOrder);
+    const order = await this.orderModel.findById(addOrder.order).exec();
+    const user = await this.findOne(addOrder.user);
+    user.orders.push(order.id);
     return createdUser;
   }
 
