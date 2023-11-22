@@ -26,11 +26,10 @@ export class UsersService {
   }
 
   async addOrder(addOrder: AddOrderDto): Promise<User> {
-    const createdUser = await this.userModel.create(addOrder);
     const order = await this.orderModel.findById(addOrder.order).exec();
     const user = await this.findOne(addOrder.user);
     user.orders.push(order.id);
-    return createdUser;
+    return user;
   }
 
   findAll(): Promise<User[]> {
