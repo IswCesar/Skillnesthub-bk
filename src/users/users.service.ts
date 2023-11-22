@@ -29,7 +29,10 @@ export class UsersService {
     const order = await this.orderModel.findById(addOrder.order).exec();
     const user = await this.findOne(addOrder.user);
     user.orders.push(order.id);
-    return user;
+    const user2 = (await this.userModel.findById(addOrder.user)).populate(
+      'orders',
+    );
+    return user2;
   }
 
   findAll(): Promise<User[]> {
