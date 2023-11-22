@@ -43,8 +43,8 @@ export class StripeService {
       const charge = await this.stripe.charges.create({
         amount: createChargeStripeDto.price,
         currency: this.configService.get<string>('STRIPE_CURRENCY'),
-        description: createChargeStripeDto.description,
-        source: createChargeStripeDto.source,
+        // description: createChargeStripeDto.description,
+        // source: createChargeStripeDto.source,
       });
       return charge;
     } catch (error) {
