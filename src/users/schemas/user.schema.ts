@@ -24,14 +24,6 @@ export class User extends Document {
   @Prop()
   birthday: string;
 
-  @Prop()
-  order: [
-    {
-      type: Types.ObjectId;
-      ref: 'Order';
-    },
-  ];
-
   @Prop({ default: now() })
   createdAt: Date;
 
@@ -40,6 +32,14 @@ export class User extends Document {
 
   @Prop({ default: now() })
   lastLogin: Date;
+
+  @Prop()
+  orders: [
+    {
+      type: Types.ObjectId;
+      ref: 'Order';
+    },
+  ];
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

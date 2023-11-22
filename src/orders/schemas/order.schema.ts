@@ -4,12 +4,6 @@ import { now, Document, Types } from 'mongoose';
 @Schema()
 export class Order extends Document {
   @Prop()
-  user: {
-    type: Types.ObjectId;
-    ref: 'User';
-  };
-
-  @Prop()
   product: [
     {
       type: Types.ObjectId;
