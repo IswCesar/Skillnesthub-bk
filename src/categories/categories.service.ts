@@ -24,8 +24,11 @@ export class CategoriesService {
     return this.categoryModel.findById(id).exec();
   }
 
-  update(id: number, updateCategoryDto: UpdateCategoryDto) {
-    return `This action updates a #${id} category`;
+  async update(id: string, updateCategoryDto: UpdateCategoryDto) {
+    const obj = await this.findOne(id);
+
+    await obj.updateOne(updateCategoryDto, { new: true });
+    return { ...obj.toJSON(), ...updateCategoryDto };
   }
 
   remove(id: string): Promise<Category> {
