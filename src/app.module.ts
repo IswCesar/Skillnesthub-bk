@@ -8,6 +8,7 @@ import { CategoriesModule } from './categories/categories.module';
 import { OrdersModule } from './orders/orders.module';
 import { StripeModule } from './stripe/stripe.module';
 import { AddressesModule } from './addresses/addresses.module';
+import { ShipmentsModule } from './shipments/shipments.module';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { AddressesModule } from './addresses/addresses.module';
     OrdersModule,
     StripeModule,
     AddressesModule,
+    ShipmentsModule,
   ],
   controllers: [],
   providers: [],

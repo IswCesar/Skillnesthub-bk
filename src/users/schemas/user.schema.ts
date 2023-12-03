@@ -1,6 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { now, Types, Document } from 'mongoose';
-import { Address } from 'src/addresses/schemas/address.schema';
 
 @Schema()
 export class User extends Document {
