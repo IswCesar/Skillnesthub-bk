@@ -1,5 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { now, Document } from 'mongoose';
+import { now, Types, Document } from 'mongoose';
+import { UserSchema } from 'src/users/schemas/user.schema';
 
 @Schema()
 export class Address extends Document {
@@ -32,6 +33,12 @@ export class Address extends Document {
 
   @Prop()
   instructions: string;
+
+  @Prop({ type: Types.ObjectId })
+  user: {
+    type: Types.ObjectId;
+    ref: 'User';
+  };
 
   @Prop({ default: now() })
   createdAt: Date;

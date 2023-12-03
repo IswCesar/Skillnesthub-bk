@@ -21,4 +21,6 @@ export class CreateAddressDto {
   streets: string;
   @IsString()
   instructions: string;
+  @IsString()
+  user: string;
 }

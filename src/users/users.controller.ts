@@ -12,6 +12,7 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { SigninUserDto } from './dto/signin-user.dto';
 import { AddOrderDto } from './dto/add-order.dto';
+import { AddAddressDto } from './dto/add-address.dto';
 
 @Controller('users')
 export class UsersController {
@@ -25,6 +26,11 @@ export class UsersController {
   @Post('addOrder')
   addOrder(@Body() addOrder: AddOrderDto) {
     return this.usersService.addOrder(addOrder);
+  }
+
+  @Post('addAddress')
+  addAddress(@Body() addAddress: AddAddressDto) {
+    return this.usersService.addAddress(addAddress);
   }
 
   @Post('sigin')

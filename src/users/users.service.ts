@@ -8,6 +8,7 @@ import * as bcrypt from 'bcrypt';
 import { SigninUserDto } from './dto/signin-user.dto';
 import { AddOrderDto } from './dto/add-order.dto';
 import { Order } from 'src/orders/schemas/order.schema';
+import { AddAddressDto } from './dto/add-address.dto';
 
 @Injectable()
 export class UsersService {
@@ -28,11 +29,22 @@ export class UsersService {
   async addOrder(addOrder: AddOrderDto): Promise<User> {
     const order = await this.orderModel.findById(addOrder.order).exec();
     const user = await this.findOne(addOrder.user);
-    user.orders.push(order.id);
+    // user.orders.push(order.id);
     const user2 = (await this.userModel.findById(addOrder.user)).populate(
       'orders',
     );
     return user2;
+  }
+
+  async addAddress(addAddress: AddAddressDto): Promise<User> {
+    // const user = await this.findOne(addAddress.user);
+    // user
+    // return user2;
+    const user = await this.userModel.findByIdAndUpdate(addAddress.user, {
+      $push: { addresses: addAddress.address },
+    });
+    console.log(user);
+    return user;
   }
 
   findAll(): Promise<User[]> {
