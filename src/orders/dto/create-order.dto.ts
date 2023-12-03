@@ -17,4 +17,6 @@ export class CreateOrderDto {
   product: string;
   @IsString()
   user: string;
+  @IsString()
+  shipment: string;
 }

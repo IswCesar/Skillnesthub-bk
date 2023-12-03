@@ -15,6 +15,12 @@ export class Order extends Document {
     ref: 'User';
   };
 
+  @Prop({ type: Types.ObjectId })
+  shipment: {
+    type: Types.ObjectId;
+    ref: 'Shipment';
+  };
+
   @Prop()
   folio: string;
 
