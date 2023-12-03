@@ -59,9 +59,11 @@ export class UsersService {
     return 'User not found';
   }
 
-  update(id: number, updateUserDto: UpdateUserDto) {
-    // TODO: PENDING
-    return `This action updates a #${id} user`;
+  async update(id: string, updateUserDto: UpdateUserDto) {
+    const obj = await this.findOne(id);
+
+    await obj.updateOne(updateUserDto, { new: true });
+    return { ...obj.toJSON(), ...updateUserDto };
   }
 
   remove(id: string) {
