@@ -3,13 +3,17 @@ import { now, Document, Types } from 'mongoose';
 
 @Schema()
 export class Order extends Document {
-  @Prop()
-  product: [
-    {
-      type: Types.ObjectId;
-      ref: 'Product';
-    },
-  ];
+  @Prop({ type: Types.ObjectId })
+  product: {
+    type: Types.ObjectId;
+    ref: 'Product';
+  };
+
+  @Prop({ type: Types.ObjectId })
+  user: {
+    type: Types.ObjectId;
+    ref: 'User';
+  };
 
   @Prop()
   folio: string;

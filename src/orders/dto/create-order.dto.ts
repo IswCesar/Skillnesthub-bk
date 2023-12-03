@@ -13,4 +13,8 @@ export class CreateOrderDto {
   folio: string;
   @IsString()
   createdAt: string;
+  @IsString()
+  product: string;
+  @IsString()
+  user: string;
 }

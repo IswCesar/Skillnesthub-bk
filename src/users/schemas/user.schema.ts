@@ -34,13 +34,13 @@ export class User extends Document {
   @Prop({ default: now() })
   lastLogin: Date;
 
-  // @Prop()
-  // orders: [
-  //   {
-  //     type: Types.ObjectId;
-  //     ref: 'Order';
-  //   },
-  // ];
+  @Prop({ type: [Types.ObjectId] })
+  orders: [
+    {
+      type: Types.ObjectId;
+      ref: 'Order';
+    },
+  ];
 
   @Prop({ type: [Types.ObjectId] })
   addresses: [

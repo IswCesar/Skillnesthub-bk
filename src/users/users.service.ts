@@ -27,19 +27,13 @@ export class UsersService {
   }
 
   async addOrder(addOrder: AddOrderDto): Promise<User> {
-    const order = await this.orderModel.findById(addOrder.order).exec();
-    const user = await this.findOne(addOrder.user);
-    // user.orders.push(order.id);
-    const user2 = (await this.userModel.findById(addOrder.user)).populate(
-      'orders',
-    );
-    return user2;
+    const order = await this.userModel.findByIdAndUpdate(addOrder.user, {
+      $push: { orders: addOrder.order },
+    });
+    return order;
   }
 
   async addAddress(addAddress: AddAddressDto): Promise<User> {
-    // const user = await this.findOne(addAddress.user);
-    // user
-    // return user2;
     const user = await this.userModel.findByIdAndUpdate(addAddress.user, {
       $push: { addresses: addAddress.address },
     });
