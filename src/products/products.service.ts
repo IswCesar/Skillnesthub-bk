@@ -24,8 +24,11 @@ export class ProductsService {
     return this.productModel.findById(id).exec();
   }
 
-  update(id: number, updateProductDto: UpdateProductDto) {
-    return `This action updates a #${id} product`;
+  async update(id: string, updateProductDto: UpdateProductDto) {
+    const obj = await this.findOne(id);
+
+    await obj.updateOne(updateProductDto, { new: true });
+    return { ...obj.toJSON(), ...updateProductDto };
   }
 
   remove(id: string): Promise<Product> {
