@@ -14,6 +14,9 @@ export class CreateProductDto {
   shortDescription: string;
 
   @IsString()
+  description_eng: string;
+
+  @IsString()
   price: string;
 
   @IsString()
