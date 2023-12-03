@@ -33,4 +33,31 @@ export class CreateProductDto {
 
   @IsString()
   miniature: string;
+
+  @IsString()
+  type: string;
+
+  @IsString()
+  release: string;
+
+  @IsString()
+  players: string;
+
+  @IsString()
+  genre: string;
+
+  @IsString()
+  publisher: string;
+
+  @IsString()
+  esrb: string;
+
+  @IsString()
+  supported: string;
+
+  @IsString()
+  size: string;
+
+  @IsString()
+  lang: string;
 }

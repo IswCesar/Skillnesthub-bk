@@ -13,6 +13,9 @@ export class Product extends Document {
   description: string;
 
   @Prop()
+  description_eng: string;
+
+  @Prop()
   shortDescription: string;
 
   @Prop()
@@ -57,6 +60,33 @@ export class Product extends Document {
 
   @Prop({ default: now() })
   updatedAt: Date;
+
+  @Prop()
+  type: string;
+
+  @Prop()
+  release: string;
+
+  @Prop()
+  players: string;
+
+  @Prop()
+  genre: string;
+
+  @Prop()
+  publisher: string;
+
+  @Prop()
+  esrb: string;
+
+  @Prop()
+  supported: string;
+
+  @Prop()
+  size: string;
+
+  @Prop()
+  lang: string;
 }
 
 export const ProductSchema = SchemaFactory.createForClass(Product);

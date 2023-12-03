@@ -12,6 +12,9 @@ export class Order extends Document {
   ];
 
   @Prop()
+  folio: string;
+
+  @Prop()
   mode: string;
 
   @Prop()
