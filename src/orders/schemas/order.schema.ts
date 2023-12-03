@@ -27,10 +27,10 @@ export class Order extends Document {
   total: string;
 
   @Prop({ default: now() })
-  createdAt: Date;
+  createdAt: string;
 
   @Prop({ default: now() })
-  updatedAt: Date;
+  updatedAt: string;
 }
 
 export const OrderSchema = SchemaFactory.createForClass(Order);

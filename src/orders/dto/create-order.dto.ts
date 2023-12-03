@@ -9,4 +9,8 @@ export class CreateOrderDto {
   paymentMode: string;
   @IsString()
   ref: string;
+  @IsString()
+  folio: string;
+  @IsString()
+  createdAt: string;
 }

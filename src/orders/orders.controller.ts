@@ -10,16 +10,10 @@ import {
 import { OrdersService } from './orders.service';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { UpdateOrderDto } from './dto/update-order.dto';
-import { IntentOrderDto } from './dto/intent-order';
 
 @Controller('orders')
 export class OrdersController {
   constructor(private readonly ordersService: OrdersService) {}
-
-  @Post('intent')
-  createIntent(@Body() intentOrderDto: IntentOrderDto) {
-    return this.ordersService.createIntent(intentOrderDto);
-  }
 
   @Post()
   create(@Body() createOrderDto: CreateOrderDto) {
@@ -38,7 +32,7 @@ export class OrdersController {
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateOrderDto: UpdateOrderDto) {
-    return this.ordersService.update(+id, updateOrderDto);
+    return this.ordersService.update(id, updateOrderDto);
   }
 
   @Delete(':id')

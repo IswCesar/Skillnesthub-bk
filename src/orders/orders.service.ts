@@ -1,7 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { UpdateOrderDto } from './dto/update-order.dto';
-import { IntentOrderDto } from './dto/intent-order';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Order } from './schemas/order.schema';
@@ -12,13 +11,47 @@ export class OrdersService {
     @InjectModel(Order.name) private readonly orderModel: Model<Order>,
   ) {}
 
-  async create(createOrderDto: CreateOrderDto): Promise<Order> {
-    const created = await this.orderModel.create(createOrderDto);
-    return created;
+  makeid(l) {
+    let text = '';
+    const char_list =
+      'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    for (let i = 0; i < l; i++) {
+      text += char_list.charAt(Math.floor(Math.random() * char_list.length));
+    }
+    return text;
   }
 
-  createIntent(intentOrderDto: IntentOrderDto) {
-    return 'This action adds a new order';
+  async create(createOrderDto: CreateOrderDto): Promise<Order> {
+    const created = await this.orderModel.create(createOrderDto);
+    let newObj;
+    if (createOrderDto.folio == '') {
+      newObj = await this.orderModel
+        .findByIdAndUpdate(
+          created._id,
+          {
+            folio: this.makeid(8),
+          },
+          { new: true },
+        )
+        .exec();
+    } else {
+      newObj = created;
+    }
+    if (createOrderDto.createdAt == '') {
+      newObj = await this.orderModel
+        .findByIdAndUpdate(
+          created._id,
+          {
+            createdAt: new Date().toLocaleDateString('es-MX'),
+          },
+          { new: true },
+        )
+        .exec();
+    } else {
+      newObj = created;
+    }
+
+    return newObj;
   }
 
   findAll(): Promise<Order[]> {
@@ -29,8 +62,11 @@ export class OrdersService {
     return this.orderModel.findById(id).exec();
   }
 
-  update(id: number, updateOrderDto: UpdateOrderDto) {
-    return `This action updates a #${id} order`;
+  async update(id: string, updateOrderDto: UpdateOrderDto) {
+    const obj = await this.findOne(id);
+
+    await obj.updateOne(updateOrderDto, { new: true });
+    return { ...obj.toJSON(), ...updateOrderDto };
   }
 
   remove(id: string): Promise<Order> {
