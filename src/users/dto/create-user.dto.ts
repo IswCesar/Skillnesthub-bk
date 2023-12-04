@@ -20,5 +20,8 @@ export class CreateUserDto {
   phone: string;
 
   @IsString()
+  type: string;
+
+  @IsString()
   birthday: string;
 }

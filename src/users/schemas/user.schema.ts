@@ -21,6 +21,9 @@ export class User extends Document {
   @Prop()
   phone: string;
 
+  @Prop({ default: 'client' })
+  type: string;
+
   @Prop()
   birthday: string;
 
