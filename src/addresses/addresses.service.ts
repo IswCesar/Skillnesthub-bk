@@ -24,6 +24,14 @@ export class AddressesService {
     return this.addressModel.findById(id).exec();
   }
 
+  findByUser(id: string): Promise<Address[]> {
+    return this.addressModel
+      .find({
+        user: id,
+      })
+      .exec();
+  }
+
   update(id: number, updateAddressDto: UpdateAddressDto) {
     return `This action updates a #${id} address`;
   }

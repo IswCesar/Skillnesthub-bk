@@ -29,6 +29,10 @@ export class AddressesController {
   findOne(@Param('id') id: string) {
     return this.addressesService.findOne(id);
   }
+  @Get('user/:id')
+  findByUser(@Param('id') id: string) {
+    return this.addressesService.findByUser(id);
+  }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateAddressDto: UpdateAddressDto) {
