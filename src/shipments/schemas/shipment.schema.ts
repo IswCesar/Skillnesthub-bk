@@ -6,7 +6,7 @@ export class Shipment extends Document {
   @Prop()
   folio: string;
 
-  @Prop()
+  @Prop({ default: 'Creado' })
   status: string;
 
   @Prop()
@@ -21,11 +21,8 @@ export class Shipment extends Document {
   @Prop()
   deadline: string;
 
-  @Prop({ type: Types.ObjectId })
-  address: {
-    type: Types.ObjectId;
-    ref: 'Address';
-  };
+  @Prop({ type: Types.ObjectId, ref: 'Address' })
+  address: { type: Types.ObjectId; ref: 'Address' };
 
   @Prop({ default: now() })
   createdAt: Date;

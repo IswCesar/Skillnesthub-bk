@@ -21,7 +21,7 @@ export class ShipmentsService {
   }
 
   findOne(id: string) {
-    return this.shipmentModel.findById(id).exec();
+    return this.shipmentModel.findById(id).populate('address').exec();
   }
 
   async update(id: string, updateShipmentDto: UpdateShipmentDto) {

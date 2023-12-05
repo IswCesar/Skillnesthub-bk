@@ -1,8 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { now, Document, Types } from 'mongoose';
-// import { Product } from '../../products/schemas/product.schema';
-// import { User } from '../../users/schemas/user.schema';
-// import { Shipment } from '../../shipments/schemas/shipment.schema';
+// BASE PARA POPULATE
 
 @Schema()
 export class Order extends Document {
