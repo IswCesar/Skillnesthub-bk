@@ -58,6 +58,10 @@ export class OrdersService {
     return this.orderModel.find().exec();
   }
 
+  findByUser(id: string): Promise<Order[]> {
+    return this.orderModel.find({ user: id }).exec();
+  }
+
   findOne(id: string): Promise<Order> {
     return this.orderModel.findById(id).exec();
   }
