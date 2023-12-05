@@ -2,8 +2,9 @@ import { Injectable } from '@nestjs/common';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { UpdateOrderDto } from './dto/update-order.dto';
 import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
+import { Model, Types } from 'mongoose';
 import { Order } from './schemas/order.schema';
+import { Schema as MongooseSchema } from 'mongoose';
 
 @Injectable()
 export class OrdersService {
@@ -58,8 +59,32 @@ export class OrdersService {
     return this.orderModel.find().exec();
   }
 
-  findByUser(id: string): Promise<Order[]> {
-    return this.orderModel.find({ user: id }).exec();
+  async findByUser(id: string): Promise<Order[]> {
+    try {
+      // const x = await this.orderModel.find({ user: id }).populate('product');
+      const x = await this.orderModel.find({ user: id }).populate([
+        {
+          path: 'user',
+          model: 'User',
+        },
+        {
+          path: 'product',
+          model: 'Product',
+        },
+        {
+          path: 'shipment',
+          model: 'Shipment',
+          populate: {
+            path: 'address',
+            model: 'Address',
+          },
+        },
+      ]);
+      console.log(x);
+      return x;
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   findOne(id: string): Promise<Order> {
