@@ -61,7 +61,6 @@ export class OrdersService {
 
   async findByUser(id: string): Promise<Order[]> {
     try {
-      // const x = await this.orderModel.find({ user: id }).populate('product');
       const x = await this.orderModel.find({ user: id }).populate([
         {
           path: 'user',
@@ -88,7 +87,24 @@ export class OrdersService {
   }
 
   findOne(id: string): Promise<Order> {
-    return this.orderModel.findById(id).exec();
+    return this.orderModel.findById(id).populate([
+      {
+        path: 'user',
+        model: 'User',
+      },
+      {
+        path: 'product',
+        model: 'Product',
+      },
+      {
+        path: 'shipment',
+        model: 'Shipment',
+        populate: {
+          path: 'address',
+          model: 'Address',
+        },
+      },
+    ]);
   }
 
   async update(id: string, updateOrderDto: UpdateOrderDto) {
