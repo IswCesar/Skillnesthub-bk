@@ -15,9 +15,13 @@ export class ShipmentsService {
   async create(createShipmentDto: CreateShipmentDto): Promise<Shipment> {
     const created = await this.shipmentModel.create(createShipmentDto);
 
+    const fecha = new Date();
+    const fechaN = new Date(fecha.setMonth(fecha.getMonth() + 1));
+
     const message = await this.shipmentModel.findByIdAndUpdate(
       created._id,
       {
+        deadline: fechaN,
         $push: {
           messages: {
             title: 'Creado',
@@ -42,6 +46,7 @@ export class ShipmentsService {
     const message = await this.shipmentModel.findByIdAndUpdate(
       addMessageShipment.shipment,
       {
+        status: addMessageShipment.title,
         $push: {
           messages: {
             title: addMessageShipment.title,
