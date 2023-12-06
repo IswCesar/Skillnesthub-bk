@@ -56,7 +56,27 @@ export class OrdersService {
   }
 
   findAll(): Promise<Order[]> {
-    return this.orderModel.find().exec();
+    return this.orderModel
+      .find()
+      .populate([
+        {
+          path: 'user',
+          model: 'User',
+        },
+        {
+          path: 'product',
+          model: 'Product',
+        },
+        {
+          path: 'shipment',
+          model: 'Shipment',
+          populate: {
+            path: 'address',
+            model: 'Address',
+          },
+        },
+      ])
+      .exec();
   }
 
   async findByUser(id: string): Promise<Order[]> {
