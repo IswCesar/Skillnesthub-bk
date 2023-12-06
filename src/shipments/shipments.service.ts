@@ -17,7 +17,7 @@ export class ShipmentsService {
   }
 
   findAll(): Promise<Shipment[]> {
-    return this.shipmentModel.find().exec();
+    return this.shipmentModel.find().populate('address').exec();
   }
 
   findOne(id: string) {
