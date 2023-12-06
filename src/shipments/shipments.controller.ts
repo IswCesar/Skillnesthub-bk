@@ -10,10 +10,16 @@ import {
 import { ShipmentsService } from './shipments.service';
 import { CreateShipmentDto } from './dto/create-shipment.dto';
 import { UpdateShipmentDto } from './dto/update-shipment.dto';
+import { AddMessageShipmentDto } from './dto/add-message-shipment';
 
 @Controller('shipments')
 export class ShipmentsController {
   constructor(private readonly shipmentsService: ShipmentsService) {}
+
+  @Post('addMessage')
+  addMessage(@Body() addMessageShipment: AddMessageShipmentDto) {
+    return this.shipmentsService.addMessage(addMessageShipment);
+  }
 
   @Post()
   create(@Body() createShipmentDto: CreateShipmentDto) {

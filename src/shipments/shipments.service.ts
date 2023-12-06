@@ -4,6 +4,7 @@ import { UpdateShipmentDto } from './dto/update-shipment.dto';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Shipment } from './schemas/shipment.schema';
+import { AddMessageShipmentDto } from './dto/add-message-shipment';
 
 @Injectable()
 export class ShipmentsService {
@@ -13,11 +14,45 @@ export class ShipmentsService {
 
   async create(createShipmentDto: CreateShipmentDto): Promise<Shipment> {
     const created = await this.shipmentModel.create(createShipmentDto);
-    return created;
+
+    const message = await this.shipmentModel.findByIdAndUpdate(
+      created._id,
+      {
+        $push: {
+          messages: {
+            title: 'Creado',
+            message: 'Registro creado en el sistema',
+            createdAt: new Date(),
+          },
+        },
+      },
+      { new: true },
+    );
+
+    return message;
   }
 
   findAll(): Promise<Shipment[]> {
     return this.shipmentModel.find().populate('address').exec();
+  }
+
+  async addMessage(
+    addMessageShipment: AddMessageShipmentDto,
+  ): Promise<Shipment> {
+    const message = await this.shipmentModel.findByIdAndUpdate(
+      addMessageShipment.shipment,
+      {
+        $push: {
+          messages: {
+            title: addMessageShipment.title,
+            message: addMessageShipment.message,
+            createdAt: new Date(),
+          },
+        },
+      },
+      { new: true },
+    );
+    return message;
   }
 
   findOne(id: string) {
