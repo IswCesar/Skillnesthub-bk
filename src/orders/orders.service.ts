@@ -99,7 +99,6 @@ export class OrdersService {
           },
         },
       ]);
-      console.log(x);
       return x;
     } catch (error) {
       console.log(error);

@@ -37,7 +37,6 @@ export class UsersService {
     const user = await this.userModel.findByIdAndUpdate(addAddress.user, {
       $push: { addresses: addAddress.address },
     });
-    console.log(user);
     return user;
   }
 
