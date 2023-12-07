@@ -9,6 +9,7 @@ import { OrdersModule } from './orders/orders.module';
 import { StripeModule } from './stripe/stripe.module';
 import { AddressesModule } from './addresses/addresses.module';
 import { ShipmentsModule } from './shipments/shipments.module';
+import { EmailModule } from './email/email.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { ShipmentsModule } from './shipments/shipments.module';
     StripeModule,
     AddressesModule,
     ShipmentsModule,
+    EmailModule,
   ],
   controllers: [],
   providers: [],
