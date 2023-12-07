@@ -13,6 +13,7 @@ import { UpdateUserDto } from './dto/update-user.dto';
 import { SigninUserDto } from './dto/signin-user.dto';
 import { AddOrderDto } from './dto/add-order.dto';
 import { AddAddressDto } from './dto/add-address.dto';
+import { ChangePwdDto } from './dto/change-pwd.dto';
 
 @Controller('users')
 export class UsersController {
@@ -21,6 +22,11 @@ export class UsersController {
   @Post()
   create(@Body() createUserDto: CreateUserDto) {
     return this.usersService.create(createUserDto);
+  }
+
+  @Post('changePwd')
+  changePassword(@Body() changePwdDto: ChangePwdDto) {
+    return this.usersService.changePwd(changePwdDto);
   }
 
   @Post('addOrder')
@@ -46,6 +52,16 @@ export class UsersController {
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.usersService.findOne(id);
+  }
+
+  @Get('verify/:id')
+  verify(@Param('id') id: string) {
+    return this.usersService.verify(id);
+  }
+
+  @Get('reset/:id')
+  reset(@Param('id') id: string) {
+    return this.usersService.reset(id);
   }
 
   @Patch(':id')

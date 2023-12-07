@@ -27,6 +27,12 @@ export class User extends Document {
   @Prop()
   birthday: string;
 
+  @Prop({ default: '' })
+  otp: string;
+
+  @Prop({ default: false })
+  verified: boolean;
+
   @Prop({ default: now() })
   createdAt: Date;
 

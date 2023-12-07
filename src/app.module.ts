@@ -10,9 +10,11 @@ import { StripeModule } from './stripe/stripe.module';
 import { AddressesModule } from './addresses/addresses.module';
 import { ShipmentsModule } from './shipments/shipments.module';
 import { EmailModule } from './email/email.module';
+import { EventEmitterModule } from '@nestjs/event-emitter';
 
 @Module({
   imports: [
+    EventEmitterModule.forRoot(),
     ConfigModule.forRoot(),
     MongooseModule.forRoot(process.env.MONGO_URL),
     UsersModule,

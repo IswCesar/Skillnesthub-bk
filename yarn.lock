@@ -775,6 +775,13 @@
     path-to-regexp "3.2.0"
     tslib "2.5.3"
 
+"@nestjs/event-emitter@^2.0.3":
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/@nestjs/event-emitter/-/event-emitter-2.0.3.tgz#3bfcb7b580f98b2dee3c44c567b45a506767f559"
+  integrity sha512-Pt7KAERrgK0OjvarSI3wfVhwZ8X1iLq1lXuodyRe+Zx3aLLP7fraFUHirASbFkB6KIQ1Zj+gZ1g8a9eu4GfFhw==
+  dependencies:
+    eventemitter2 "6.4.9"
+
 "@nestjs/mapped-types@^2.0.2":
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/@nestjs/mapped-types/-/mapped-types-2.0.4.tgz#97280b06bf85d34ea9bad1e847e5e3cbaca8f04f"
@@ -1066,16 +1073,16 @@
   integrity sha512-/pyBZWSLD2n0dcHE3hq8s8ZvcETHtEuF+3E7XVt0Ig2nvsVQXdghHVcEkIWjy9A0wKfTn97a/PSDYohKIlnP/w==
 
 "@types/node@*", "@types/node@>=8.1.0":
-  version "20.10.3"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-20.10.3.tgz#4900adcc7fc189d5af5bb41da8f543cea6962030"
-  integrity sha512-XJavIpZqiXID5Yxnxv3RUDKTN5b81ddNC3ecsA0SoFXz/QU8OGBwZGMomiq0zw+uuqbL/krztv/DINAQ/EV4gg==
+  version "20.10.4"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-20.10.4.tgz#b246fd84d55d5b1b71bf51f964bd514409347198"
+  integrity sha512-D08YG6rr8X90YB56tSIuBaddy/UXAA9RKJoFvrsnogAum/0pmjkgi4+2nx96A330FmioegBWmEYQ+syqCFaveg==
   dependencies:
     undici-types "~5.26.4"
 
 "@types/node@^16.0.0":
-  version "16.18.67"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-16.18.67.tgz#518feb681958dedf2d187b8b4d20bf3530afe1fb"
-  integrity sha512-gUa0tDO9oxyAYO9V9tqxDJguVMDpqUwH5I5Q9ASYBCso+8CUdJlKPKDYS1YSS9kyZWIduDafZvucGM0zGNKFjg==
+  version "16.18.68"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-16.18.68.tgz#3155f64a961b3d8d10246c80657f9a7292e3421a"
+  integrity sha512-sG3hPIQwJLoewrN7cr0dwEy+yF5nD4D/4FxtQpFciRD/xwUzgD+G05uxZHv5mhfXo4F9Jkp13jjn0CC2q325sg==
 
 "@types/parse-json@^4.0.0":
   version "4.0.2"
@@ -2521,9 +2528,9 @@ ejs@^3.1.9:
     jake "^10.8.5"
 
 electron-to-chromium@^1.4.601:
-  version "1.4.606"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.606.tgz#d9f83f7d06a253ccdd99475dccbbd38d4758ba2f"
-  integrity sha512-Zdv0XuhfyWZUsQ5Uq59d43ZmZOdoGZNWjeN4WCxxlQaP8crAWdnWcTxfHKcaJl6PW2SWpHx6DsxSx7v6KcGCuw==
+  version "1.4.607"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.607.tgz#340cc229b504966413716c6eae67d0f3d3702ff0"
+  integrity sha512-YUlnPwE6eYxzwBnFmawA8LiLRfm70R2aJRIUv0n03uHt/cUzzYACOogmvk8M2+hVzt/kB80KJXx7d5f5JofPvQ==
 
 emittery@^0.10.2:
   version "0.10.2"
@@ -2768,6 +2775,11 @@ etag@~1.8.1:
   version "1.8.1"
   resolved "https://registry.yarnpkg.com/etag/-/etag-1.8.1.tgz#41ae2eeb65efa62268aebfea83ac7d79299b0887"
   integrity sha512-aIL5Fx7mawVa300al2BnEE4iNvo1qETxLrPI/o05L7z6go7fCw1J6EQmbK4FmJ2AS7kgVF/KEZWufBfdClMcPg==
+
+eventemitter2@6.4.9:
+  version "6.4.9"
+  resolved "https://registry.yarnpkg.com/eventemitter2/-/eventemitter2-6.4.9.tgz#41f2750781b4230ed58827bc119d293471ecb125"
+  integrity sha512-JEPTiaOt9f04oa6NOkc4aH+nVp5I3wEjpHbIPqfgCdD5v5bUzy7xQqwcVO2aDQgOWhI28da57HksMrzK9HlRxg==
 
 events@^3.2.0:
   version "3.3.0"
@@ -6449,9 +6461,9 @@ terser-webpack-plugin@^5.3.7:
     terser "^5.16.8"
 
 terser@^5.16.8:
-  version "5.25.0"
-  resolved "https://registry.yarnpkg.com/terser/-/terser-5.25.0.tgz#6579b4cca45b08bf0fdaa1a04605fd5860dfb2ac"
-  integrity sha512-we0I9SIsfvNUMP77zC9HG+MylwYYsGFSBG8qm+13oud2Yh+O104y614FRbyjpxys16jZwot72Fpi827YvGzuqg==
+  version "5.26.0"
+  resolved "https://registry.yarnpkg.com/terser/-/terser-5.26.0.tgz#ee9f05d929f4189a9c28a0feb889d96d50126fe1"
+  integrity sha512-dytTGoE2oHgbNV9nTzgBEPaqAWvcJNl66VZ0BkJqlvp71IjO8CxdBx/ykCNb47cLnCmCvRZ6ZR0tLkqvZCdVBQ==
   dependencies:
     "@jridgewell/source-map" "^0.3.3"
     acorn "^8.8.2"

@@ -24,4 +24,6 @@ export class CreateUserDto {
 
   @IsString()
   birthday: string;
+  @IsString()
+  otp: string;
 }
